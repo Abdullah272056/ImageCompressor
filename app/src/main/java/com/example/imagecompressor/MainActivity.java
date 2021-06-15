@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,8 +30,11 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
+import id.zelory.compressor.Compressor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -93,7 +98,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-       
+        compressButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+
+               int quality=seekBar.getProgress();
+               int width=Integer.parseInt(txtWidth.getText().toString());
+               int height=Integer.parseInt(txtHeight.getText().toString());
+                try {
+                    compressImage=new Compressor(MainActivity.this)
+                            .setMaxWidth(width)
+                            .setMaxHeight(height)
+                            .setQuality(quality)
+                            .setCompressFormat(Bitmap.CompressFormat.JPEG)
+                            .setDestinationDirectoryPath(filePath)
+                            .compressToFile(originalImage);
+                    File finalFile=new File(filePath,originalImage.getName());
+                    Bitmap finalBitmap=BitmapFactory.decodeFile(finalFile.getAbsolutePath());
+                    compressImageView.setImageBitmap(finalBitmap);
+                    txtCompress.setText("Size : "+ Formatter.formatShortFileSize(MainActivity.this,finalFile.length()));
+                    Toast.makeText(MainActivity.this, "compressed and save", Toast.LENGTH_SHORT).show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e("err",String.valueOf(e));
+                    Toast.makeText(MainActivity.this, "error while compressing", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
 
 
     }

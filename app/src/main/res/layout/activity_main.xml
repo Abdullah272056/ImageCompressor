@@ -86,7 +86,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:inputType="number"
-                    android:id="@+id/heightTextViewId"
+                    android:id="@+id/heightEditTextId"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center" />
@@ -99,7 +99,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:inputType="number"
-                    android:id="@+id/widthTextViewId"
+                    android:id="@+id/widthEditTextId"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center" />
@@ -126,6 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
             <Button
+                android:visibility="gone"
                 android:id="@+id/compressButton"
                 android:layout_margin="10dp"
                 android:text="Compress Image"

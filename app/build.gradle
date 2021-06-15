@@ -32,5 +32,6 @@ dependencies {
 
     // dexter
     implementation 'com.karumi:dexter:6.2.2'
+    implementation 'id.zelory:compressor:2.1.1'
 
 }

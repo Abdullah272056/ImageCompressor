@@ -64,6 +64,24 @@ public class MainActivity extends AppCompatActivity {
             path.mkdirs();
         }
 
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                txtQuality.setText("Quality:" +String.valueOf(progress));
+                seekBar.setMax(100);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
         pickButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+       
 
 
     }

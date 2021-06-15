@@ -1,18 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:background="@drawable/custom_bg"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <ImageView
+                        android:scaleType="centerCrop"
+                        android:id="@+id/originalImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"/>
+                    <TextView
+                        android:id="@+id/originalTextView"
+                        android:textSize="25sp"
+                        android:textAlignment="center"
+                        android:textColor="#020202"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_horizontal" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:background="@drawable/custom_bg"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp">
+
+
+                    <ImageView
+                        android:scaleType="centerCrop"
+                        android:id="@+id/compressImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"/>
+                    <TextView
+                        android:id="@+id/compressTextView"
+                        android:textSize="25sp"
+                        android:textAlignment="center"
+                        android:textColor="#020202"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_horizontal" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                
+                <EditText
+                    android:layout_margin="6dp"
+                    android:textColor="#000000"
+                    android:background="@drawable/custom_bg"
+                    android:textSize="20sp"
+                    android:hint="height"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:inputType="number"
+                    android:id="@+id/heightTextViewId"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center" />
+                <EditText
+                    android:textColor="#000000"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/custom_bg"
+                    android:textSize="20sp"
+                    android:hint="width"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:inputType="number"
+                    android:id="@+id/widthTextViewId"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center" />
+
+                
+            </LinearLayout>
+            <TextView
+                android:id="@+id/qualityTextViewId"
+                android:textColor="#000000"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Quality:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <SeekBar
+                android:layout_marginTop="15dp"
+                android:id="@+id/seekQuality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/pickButton"
+                android:layout_margin="10dp"
+                android:text="Pick Image"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+            <Button
+                android:id="@+id/compressButton"
+                android:layout_margin="10dp"
+                android:text="Compress Image"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

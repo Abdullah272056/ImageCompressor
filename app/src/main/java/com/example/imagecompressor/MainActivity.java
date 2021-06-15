@@ -11,12 +11,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.format.Formatter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -31,7 +33,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView originalImage,compressImage;
+    ImageView originalImageView,compressImageView;
     TextView txtOriginal,txtCompress,txtQuality;
     EditText txtHeight,txtWidth;
     SeekBar seekBar;
@@ -39,14 +41,15 @@ public class MainActivity extends AppCompatActivity {
     private static String filePath;
     File path=new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/myCompressor");
     public static final int RESULT_IMAGE=1;
+    File originalImage,compressImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         askPermission();
-        originalImage=findViewById(R.id.originalImageView);
-        compressImage=findViewById(R.id.compressImageView);
+        originalImageView=findViewById(R.id.originalImageView);
+        compressImageView=findViewById(R.id.compressImageView);
         txtOriginal=findViewById(R.id.originalTextView);
         txtCompress=findViewById(R.id.compressTextView);
         txtQuality=findViewById(R.id.qualityTextViewId);
@@ -90,11 +93,17 @@ public class MainActivity extends AppCompatActivity {
             try {
                 final InputStream imageStream=getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage= BitmapFactory.decodeStream(imageStream);
-                originalImage.setImageBitmap(selectedImage);
+                originalImageView.setImageBitmap(selectedImage);
+                originalImage=new File(imageUri.getPath().replace("raw/",""));
+                txtOriginal.setText("Size"+ Formatter.formatShortFileSize(this,originalImage.length()));
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
+                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
+
+        }else {
+            Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
 
         }
     }
